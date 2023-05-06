@@ -41,6 +41,33 @@ public class MsgHandler extends AbstractHandler {
         } catch (WxErrorException e) {
             e.printStackTrace();
         }
+        //解析淘口令
+        if (StringUtils.startsWithAny(wxMessage.getContent(), "￥")) {
+            String content = wxMessage.getContent();
+            String[] split = content.split("￥");
+            String tk = split[1];
+            String url = "https://api.open.21ds.cn/apiv1/taoke/getTbkTpwdInfo?apkey=1b2c3d4e5f6g7h8i&tpwd=" + tk;
+//            String s = JsonUtils.(url);
+//            String coupon_click_url = JsonUtils.getJsonString(s, "data", "coupon_click_url");
+//            String coupon_info = JsonUtils.getJsonString(s, "data", "coupon_info");
+//            String coupon_remain_count = JsonUtils.getJsonString(s, "data", "coupon_remain_count");
+//            String coupon_total_count = JsonUtils.getJsonString(s, "data", "coupon_total_count");
+//            String coupon_start_time = JsonUtils.getJsonString(s, "data", "coupon_start_time");
+//            String coupon_end_time = JsonUtils.getJsonString(s, "data", "coupon_end_time");
+//            String coupon_amount = JsonUtils.getJsonString(s, "data", "coupon_amount");
+//            String coupon_share_url = JsonUtils.getJsonString(s, "data", "coupon_share_url");
+//            String coupon_short_url = JsonUtils.getJsonString(s, "data", "coupon_short_url");
+//            String coupon_tpwd = JsonUtils.getJsonString(s, "data", "coupon_tpwd");
+//            String coupon_tpwd_url = JsonUtils.getJsonString(s, "data", "coupon_tpwd_url");
+//            String item_id = JsonUtils.getJsonString(s, "data", "item_id");
+//            String item_url = JsonUtils.getJsonString(s, "data", "item_url");
+//            String max_commission_rate = JsonUtils.getJsonString(s, "data", "max_commission_rate");
+//            String max_commission_rate_time = JsonUtils.getJsonString(s, "data", "max_commission_rate_time");
+//            String min_commission_rate = JsonUtils.getJsonString(s, "data", "min_commission_rate");
+//            String min_commission_rate_time = JsonUtils.getJsonString(s, "data", "min_commission_rate_time");
+//            String short_url = JsonUtils.getJsonString(s, "data", "short_url");
+//            String tao_id = JsonUtils.getJsonString(s, "data",)
+        }
 
         //TODO 组装回复消息
         String content = "收到信息内容：" + JsonUtils.toJson(wxMessage);
